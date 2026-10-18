@@ -1,0 +1,29 @@
+python 3.11.9 | Windows 10
+  torch            2.9.0
+  torchvision      0.24.0
+  onnx             1.19.1
+  onnxscript       0.5.6
+  onnxruntime      1.23.2
+  onnxruntime-gpu  -
+
+=== A) full wrapper, export defaults ===
+Applied 40 of general pattern rewrite rules.
+  pytorch logits : [3.2819 3.2618 3.289  3.2941]
+  onnx    logits : [3.2623 3.2351 3.2655 3.2765]
+  max abs diff 2.669e-02 | relative 8.101e-03 | cosine 0.99999940
+  -> MISMATCH
+
+=== B) full wrapper, dynamo=False ===
+  pytorch logits : [3.2819 3.2618 3.289  3.2941]
+  onnx    logits : [3.2819 3.2618 3.289  3.2941]
+  max abs diff 5.007e-06 | relative 1.520e-06 | cosine 0.99999994
+  -> MATCH
+
+=== C) tiles only, export defaults ===
+Applied 40 of general pattern rewrite rules.
+  pytorch logits : [3.2819 3.2618 3.289  3.2941]
+  onnx    logits : [3.2623 3.2351 3.2655 3.2765]
+  max abs diff 2.669e-02 | relative 8.101e-03 | cosine 0.99999940
+  -> MISMATCH
+
+SUMMARY: {'A_full_default': 'MISMATCH', 'B_full_legacy': 'MATCH', 'C_tiles_default': 'MISMATCH'}

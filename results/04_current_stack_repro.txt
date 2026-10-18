@@ -1,0 +1,27 @@
+python 3.11.9 | Windows 10
+  torch            2.11.0+cu130
+  torchvision      0.26.0+cu130
+  onnx             1.22.0
+  onnxscript       0.7.1
+  onnxruntime      -
+  onnxruntime-gpu  1.27.0
+
+=== A) full wrapper, export defaults ===
+  pytorch logits : [3.2819 3.2618 3.289  3.2941]
+  onnx    logits : [3.2819 3.2618 3.289  3.2941]
+  max abs diff 4.292e-06 | relative 1.303e-06 | cosine 1.00000000
+  -> MATCH
+
+=== B) full wrapper, dynamo=False ===
+  pytorch logits : [3.2819 3.2618 3.289  3.2941]
+  onnx    logits : [3.2819 3.2618 3.289  3.2941]
+  max abs diff 5.007e-06 | relative 1.520e-06 | cosine 0.99999994
+  -> MATCH
+
+=== C) tiles only, export defaults ===
+  pytorch logits : [3.2819 3.2618 3.289  3.2941]
+  onnx    logits : [3.2819 3.2618 3.289  3.2941]
+  max abs diff 5.007e-06 | relative 1.520e-06 | cosine 1.00000000
+  -> MATCH
+
+SUMMARY: {'A_full_default': 'MATCH', 'B_full_legacy': 'MATCH', 'C_tiles_default': 'MATCH'}

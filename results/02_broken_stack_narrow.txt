@@ -1,0 +1,19 @@
+torch 2.9.0+cpu | onnxscript 0.5.6 | onnx-ir 0.1.12 | onnxruntime 1.23.2
+  pytorch        logits [3.2819 3.2618 3.289  3.2941]
+Applied 40 of general pattern rewrite rules.
+
+  optimize=True  onnx logits [3.2623 3.2351 3.2655 3.2765]
+                 max abs diff 2.669e-02 | cosine 0.99999940 -> MISMATCH
+  optimize=False onnx logits [3.2819 3.2618 3.289  3.2941]
+                 max abs diff 3.815e-06 | cosine 1.00000000 -> MATCH
+
+  op type          optimize=False -> optimize=True
+  BatchNormalization    20 ->     0
+  CastLike            20 ->     0
+  Concat               1 ->     0
+  Constant            25 ->     0
+  Expand              40 ->     0
+  Reshape              2 ->     1
+  Shape               20 ->     0
+
+SUMMARY: optimize=True MISMATCH | optimize=False MATCH

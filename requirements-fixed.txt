@@ -1,0 +1,9 @@
+# Same PyTorch, newer onnxscript. Only the exporter's optimizer library changes.
+torch==2.9.0
+torchvision==0.24.0
+onnx==1.19.1
+onnxruntime==1.23.2
+onnxscript==0.7.1
+onnx-ir==1.0.0
+protobuf==6.33.0
+numpy

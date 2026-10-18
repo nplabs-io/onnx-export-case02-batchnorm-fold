@@ -1,0 +1,18 @@
+torch 2.9.0+cpu | onnxscript 0.7.1 | onnx-ir 1.0.0 | onnxruntime 1.23.2
+  pytorch        logits [3.2819 3.2618 3.289  3.2941]
+
+  optimize=True  onnx logits [3.2819 3.2618 3.289  3.2941]
+                 max abs diff 5.007e-06 | cosine 1.00000000 -> MATCH
+  optimize=False onnx logits [3.2819 3.2618 3.289  3.2941]
+                 max abs diff 3.815e-06 | cosine 1.00000000 -> MATCH
+
+  op type          optimize=False -> optimize=True
+  BatchNormalization    20 ->     0
+  CastLike            20 ->     0
+  Concat               1 ->     0
+  Constant            25 ->     0
+  Expand              40 ->     0
+  Reshape              2 ->     1
+  Shape               20 ->     0
+
+SUMMARY: optimize=True MATCH | optimize=False MATCH
